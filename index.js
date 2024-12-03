@@ -6,7 +6,7 @@ import {setTimeout} from 'node:timers/promises';
 import fileUrl from 'file-url';
 import puppeteer, {KnownDevices} from 'puppeteer';
 import toughCookie from 'tough-cookie';
-import {PuppeteerBlocker} from '@cliqz/adblocker-puppeteer';
+import {PuppeteerBlocker} from '@ghostery/adblocker-puppeteer';
 
 const isUrl = string => /^(https?|file):\/\/|^data:/.test(string);
 
@@ -165,7 +165,6 @@ const internalCaptureWebsite = async (input, options) => {
 		page = await browser.newPage();
 
 		if (options.blockAds) {
-			// eslint-disable-next-line n/no-unsupported-features/node-builtins
 			const blocker = await PuppeteerBlocker.fromPrebuiltFull(fetch, {
 				path: 'engine.bin',
 				read: fs.readFile,
